@@ -1,0 +1,441 @@
+html_content = """<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Volunteer - Legal Mitra Network</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #c5a059;
+            --accent-color: #1e3a8a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .top-info span {
+            margin-right: 15px;
+        }
+
+        .top-info i {
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .top-social a {
+            color: #ffffff;
+            margin-left: 12px;
+            font-size: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0 5%;
+            overflow-x: auto;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 18px;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(13, 35, 58, 0.85), rgba(13, 35, 58, 0.85)), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .page-banner h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Container */
+        .container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Form Styling */
+        .form-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+        }
+
+        .form-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Benefits Cards */
+        .benefit-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .benefit-card i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 4px;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .benefit-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 30px 5% 15px;
+            border-top: 4px solid var(--secondary-color);
+            margin-top: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fa-solid fa-phone"></i> +91 9321430535</span>
+            <span><i class="fa-solid fa-envelope"></i> legalmitranetwork@gmail.com</span>
+        </div>
+        <div class="top-social">
+            <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@LegalMitraNews" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/18cNXq6W9X/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/legal_mitra_network" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="logo-container">
+                <i class="fa-solid fa-scale-balanced logo-icon"></i>
+                <div class="logo-text">
+                    <h1>LEGAL MITRA NETWORK</h1>
+                    <p>कायद्याची माहिती, सर्वांसाठी.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                <li><a href="education.html"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                <li><a href="resources.html"><i class="fa-solid fa-folder-open"></i> Resources</a></li>
+                <li><a href="awareness.html"><i class="fa-solid fa-bullhorn"></i> Awareness</a></li>
+                <li><a href="volunteer.html" class="active"><i class="fa-solid fa-handshake-angle"></i> Volunteer</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <h2>कायदेशीर स्वयंसेवक व्हा (Become a Volunteer)</h2>
+        <p>🤝 समाजात कायदेशीर साक्षरता पसरवण्यासाठी Legal Mitra Network सोबत जोडा</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="grid-2">
+
+            <!-- Registration Form -->
+            <div class="form-card">
+                <h3><i class="fa-solid fa-user-plus"></i> नोंदणी अर्ज (Volunteer Registration)</h3>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="fullname">पूर्ण नाव (Full Name)</label>
+                        <input type="text" id="fullname" placeholder="तुमचे नाव टाका" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">ईमेल पत्ता (Email Address)</label>
+                        <input type="email" id="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">फोन / व्हॉट्सॲप नंबर (Mobile Number)</label>
+                        <input type="tel" id="phone" placeholder="+91 XXXXXXXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occupation">व्यवसाय / शिक्षण (Qualification / Role)</label>
+                        <select id="occupation" required>
+                            <option value="">निवडा...</option>
+                            <option value="law_student">कायद्याचा विद्यार्थी (Law Student)</option>
+                            <option value="advocate">वकील / विधीज्ञ (Advocate / Legal Expert)</option>
+                            <option value="social_worker">सामाजिक कार्यकर्ता (Social Worker)</option>
+                            <option value="citizen">जागरूक नागरिक (Aware Citizen)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">शहर / जिल्हा (City / District)</label>
+                        <input type="text" id="city" placeholder="उदा. ठाणे, मुंबई, पुणे" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">तुम्ही कसे योगदान देऊ इच्छिता? (How can you contribute?)</label>
+                        <textarea id="message" rows="4" placeholder="तुमचे विचार किंवा अनुभव थोडक्यात सांगा..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> नोंदणी करा (Submit)</button>
+                </form>
+            </div>
+
+            <!-- Why Join Section -->
+            <div>
+                <h3 style="font-size: 1.4rem; color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+                    <i class="fa-solid fa-star"></i> आमच्यासोबत का जोडले जावे? (Why Join Us?)
+                </h3>
+
+                <div class="benefit-card">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <div>
+                        <h4>जनजागृती मोहीम (Legal Awareness)</h4>
+                        <p>सामान्यांपर्यंत कायदेशीर हक्क पोहोचवण्यासाठी प्रत्यक्ष व ऑनलाईन मोहिमांमध्ये सहभाग.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <h4>प्रमाणपत्र व अनुभव (Certificate & Experience)</h4>
+                        <p>उत्कृष्ट कार्य करणाऱ्या स्वयंसेवकांना Legal Mitra Network कडून प्रमाणपत्र व अनुभव पत्र.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <i class="fa-solid fa-users"></i>
+                    <div>
+                        <h4>कायदेशीर नेटवर्क (Legal Networking)</h4>
+                        <p>ज्येष्ठ वकील, विधीतज्ज्ञ आणि सामाजिक कार्यकर्त्यांच्या नेटवर्कमध्ये सहभागी होण्याची संधी.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Legal Mitra Network. सर्व हक्क सुरक्षित. | कायद्याची माहिती, सर्वांसाठी.</p>
+    </footer>
+
+</body>
+</html>
+"""
+
+with open("volunteer.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("volunteer.html generated successfully.")
