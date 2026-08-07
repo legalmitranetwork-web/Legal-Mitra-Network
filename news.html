@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Mitra News - कायदेशीर बातम्या आणि अपडेट्स</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #c5a059;
+            --accent-color: #dc2626;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        .dark-mode {
+            --primary-color: #0b1329;
+            --secondary-color: #d4af37;
+            --accent-color: #ef4444;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .top-info span {
+            margin-right: 15px;
+        }
+
+        .top-info i {
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .top-social a {
+            color: #ffffff;
+            margin-left: 12px;
+            font-size: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0 5%;
+            overflow-x: auto;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 18px;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Category Filter Tabs */
+        .category-bar {
+            background-color: var(--card-bg);
+            padding: 15px 5%;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .cat-btn {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Main Container */
+        .container {
+            padding: 30px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2.8fr 1.2fr;
+            gap: 30px;
+        }
+
+        /* Section Title */
+        .section-header {
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark-mode .section-title {
+            color: var(--secondary-color);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .tag {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .btn-read {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .btn-read:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Sidebar Widgets */
+        .sidebar-widget {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .trending-list {
+            list-style: none;
+        }
+
+        .trending-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+
+        .trending-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 30px 5% 15px;
+            border-top: 4px solid var(--secondary-color);
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fa-solid fa-phone"></i> +91 9321430535</span>
+            <span><i class="fa-solid fa-envelope"></i> legalmitranetwork@gmail.com</span>
+        </div>
+        <div class="top-social">
+            <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@LegalMitraNews" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/18cNXq6W9X/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/legal_mitra_network" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="logo-container">
+                <i class="fa-solid fa-scale-balanced logo-icon"></i>
+                <div class="logo-text">
+                    <h1>LEGAL MITRA NETWORK</h1>
+                    <p>कायद्याची माहिती, सर्वांसाठी.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                <li><a href="news.html" class="active"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-folder-open"></i> Resources</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-address-book"></i> Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- News Category Filters -->
+    <div class="category-bar">
+        <button class="cat-btn active">सर्व बातम्या (All)</button>
+        <button class="cat-btn">सर्वोच्च न्यायालय (Supreme Court)</button>
+        <button class="cat-btn">उच्च न्यायालय (High Court)</button>
+        <button class="cat-btn">महाराष्ट्र शासन GR</button>
+        <button class="cat-btn">RTI / नागरिक हक्क</button>
+        <button class="cat-btn">कामगार व चालक कल्याण</button>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="container">
+        <!-- Main News Column -->
+        <main>
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-newspaper"></i> ताज्या कायदेशीर बातम्या (Legal Mitra News)</div>
+            </div>
+
+            <div class="news-grid">
+                <!-- News Card 1 -->
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="news-body">
+                        <div>
+                            <div class="news-meta">
+                                <span class="tag">Supreme Court</span>
+                                <span><i class="fa-regular fa-calendar"></i> आज</span>
+                            </div>
+                            <h3 class="news-title">नागरिकांच्या मूलभूत हक्कांवर सर्वोच्च न्यायालयाचा अत्यंत महत्त्वपूर्ण निकाल</h3>
+                            <p class="news-excerpt">सरकारी कामात पारदर्शकता आणि जलद न्यायासाठी न्यायालयाने जारी केले नवीन आदेश...</p>
+                        </div>
+                        <a href="#" class="btn-read">सविस्तर वाचा</a>
+                    </div>
+                </div>
+
+                <!-- News Card 2 -->
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="news-body">
+                        <div>
+                            <div class="news-meta">
+                                <span class="tag">Government GR</span>
+                                <span><i class="fa-regular fa-calendar"></i> काल</span>
+                            </div>
+                            <h3 class="news-title">कामगार व वाहन चालकांसाठी नवीन शासन निर्णय (GR) जाहीर</h3>
+                            <p class="news-excerpt">राज्य सरकारकडून कामगार कल्याणासाठी विविध योजना; जाणून घ्या कोणाला मिळणार फायदा...</p>
+                        </div>
+                        <a href="#" class="btn-read">सविस्तर वाचा</a>
+                    </div>
+                </div>
+
+                <!-- News Card 3 -->
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="news-body">
+                        <div>
+                            <div class="news-meta">
+                                <span class="tag">RTI Updates</span>
+                                <span><i class="fa-regular fa-calendar"></i> २ दिवसांपूर्वी</span>
+                            </div>
+                            <h3 class="news-title">माहिती अधिकार (RTI) अर्जाबाबत मुंबई उच्च न्यायालयाचे महत्त्वाचे निरीक्षण</h3>
+                            <p class="news-excerpt">नागरिकांना वेळेत माहिती न देणाऱ्या जनमाहिती अधिकाऱ्यांवर होणार कडक कारवाई...</p>
+                        </div>
+                        <a href="#" class="btn-read">सविस्तर वाचा</a>
+                    </div>
+                </div>
+
+                <!-- News Card 4 -->
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="news-body">
+                        <div>
+                            <div class="news-meta">
+                                <span class="tag">Consumer Rights</span>
+                                <span><i class="fa-regular fa-calendar"></i> ३ दिवसांपूर्वी</span>
+                            </div>
+                            <h3 class="news-title">ऑनलाइन फसवणूक झाल्यास ग्राहक मंचाकडे तक्रार कशी करावी?</h3>
+                            <p class="news-excerpt">सायबर गुन्हे आणि ग्राहक हक्कांबद्दल सविस्तर माहिती व मार्गदर्शक तत्त्वे...</p>
+                        </div>
+                        <a href="#" class="btn-read">सविस्तर वाचा</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="sidebar-widget">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <div class="section-title" style="font-size: 1.1rem;"><i class="fa-solid fa-fire"></i> ट्रेंडिंग बातम्या</div>
+                </div>
+                <ul class="trending-list">
+                    <li class="trending-item">
+                        <span class="trending-num">1</span>
+                        <div><strong>नवीन भारतीय न्याय संहिता (BNS) चे सोप्या भाषेतील नियम</strong></div>
+                    </li>
+                    <li class="trending-item">
+                        <span class="trending-num">2</span>
+                        <div><strong>पोलिस ठाण्यात एफआयआर (FIR) नोंदवताना कोणत्या गोष्टी लक्षात ठेवाव्यात?</strong></div>
+                    </li>
+                    <li class="trending-item">
+                        <span class="trending-num">3</span>
+                        <div><strong>महिलांसाठी विशेष कायदेशीर अधिकार आणि सुरक्षा कायदे</strong></div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- YouTube Video Widget -->
+            <div class="sidebar-widget">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <div class="section-title" style="font-size: 1.1rem;"><i class="fa-brands fa-youtube"></i> Legal Mitra News Channel</div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">व्हिडिओ अपडेट्स पाहण्यासाठी आमच्या यूट्यूब चॅनेलला सबस्क्राईब करा:</p>
+                <a href="https://www.youtube.com/@LegalMitraNews" target="_blank" class="btn-read" style="background-color: #ff0000; width: 100%;"><i class="fa-brands fa-youtube"></i> YouTube वर पहा</a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Legal Mitra Network. सर्व हक्क सुरक्षित. | Legal Mitra News - अचूक आणि विश्वासार्ह कायदेशीर बातम्या.</p>
+    </footer>
+
+</body>
+</html>
