@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Mitra Network - कायदेशीर जागरूकतेचा प्रवास</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #c5a059;
+            --accent-color: #1e3a8a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+        }
+
+        .dark-mode {
+            --primary-color: #0b1329;
+            --secondary-color: #d4af37;
+            --accent-color: #2563eb;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .top-info span {
+            margin-right: 15px;
+        }
+
+        .top-info i {
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .top-social a {
+            color: #ffffff;
+            margin-left: 12px;
+            font-size: 1rem;
+        }
+
+        .top-social a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .dark-mode .logo-text h1 {
+            color: var(--secondary-color);
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 8px 35px 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0 5%;
+            overflow-x: auto;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 18px;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            list-style: none;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+        }
+
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Breaking News Ticker */
+        .ticker-container {
+            display: flex;
+            background-color: #dc2626;
+            color: white;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .ticker-title {
+            background-color: #991b1b;
+            padding: 8px 20px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .ticker-content {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Hero Banner Slider */
+        .hero-slider {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-caption {
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 30px 5%;
+            width: 100%;
+        }
+
+        .slide-caption h2 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        /* Layout Container */
+        .main-container {
+            padding: 30px 5%;
+            display: grid;
+            grid-template-columns: 2.8fr 1.2fr;
+            gap: 30px;
+        }
+
+        /* Section Styling */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark-mode .section-title {
+            color: var(--secondary-color);
+        }
+
+        .view-all {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Cards Styling */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-img {
+            height: 160px;
+            background-color: #cbd5e1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            width: fit-content;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .card-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-gold {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-gold:hover {
+            background-color: #b38e46;
+        }
+
+        /* Icon Service Cards */
+        .service-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-50px);
+            border-color: var(--secondary-color);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-widget {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .social-links-widget {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .bg-whatsapp { background-color: #25D366; }
+        .bg-youtube { background-color: #FF0000; }
+        .bg-facebook { background-color: #1877F2; }
+        .bg-instagram { background-color: #E4405F; }
+
+        /* Counter Section */
+        .stats-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 5%;
+            margin: 30px 0;
+            border-radius: var(--radius);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 40px 5% 20px;
+            border-top: 4px solid var(--secondary-color);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .header-main {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+            .hero-slider {
+                height: 250px;
+            }
+            .slide-caption h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fa-solid fa-phone"></i> +91 9321430535</span>
+            <span><i class="fa-solid fa-envelope"></i> legalmitranetwork@gmail.com</span>
+        </div>
+        <div class="top-social">
+            <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@LegalMitraNews" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/18cNXq6W9X/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/legal_mitra_network" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="logo-container">
+                <i class="fa-solid fa-scale-balanced logo-icon"></i>
+                <div class="logo-text">
+                    <h1>LEGAL MITRA NETWORK</h1>
+                    <p>कायद्याची माहिती, सर्वांसाठी.</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="शोधा...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Dark/Light Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-newspaper"></i> News <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Breaking News</a></li>
+                        <li><a href="#">Supreme Court</a></li>
+                        <li><a href="#">High Court</a></li>
+                        <li><a href="#">Government GR</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-graduation-cap"></i> Legal Education</a></li>
+                <li><a href="#"><i class="fa-solid fa-bullhorn"></i> Awareness</a></li>
+                <li><a href="#"><i class="fa-solid fa-folder-open"></i> Resources</a></li>
+                <li><a href="#"><i class="fa-solid fa-users"></i> Volunteer</a></li>
+                <li><a href="#"><i class="fa-solid fa-user-tie"></i> Knowledge Contributors</a></li>
+                <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Running Breaking News Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-title"><i class="fa-solid fa-bolt"></i> BREAKING NEWS</div>
+        <div class="ticker-content">
+            <div class="ticker-text">
+                ⚖️ सर्वोच्च न्यायालयाचा नवीन महत्त्वपूर्ण निकाल जाहीर... | 📜 नवीन शासकीय नियम व GR अपडेट्स पाहण्यासाठी फॉर्म भरा... | 🤝 लीगल मित्र नेटवर्क मध्ये Volunteer म्हणून नोंदणी सुरू आहे!
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Hero Slider -->
+    <div class="hero-slider">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide-caption">
+                <h2>कायदेशीर जागरूकतेचा प्रवास</h2>
+                <p>सामाजिक न्याय, नागरिक हक्क आणि मोफत कायदेशीर मार्गदर्शनासाठी कटिबद्ध.</p>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide-caption">
+                <h2>माहितीचा अधिकार (RTI) आणि ग्राहक संरक्षण</h2>
+                <p>आपल्या हक्कांची अचूक माहिती मिळवा आणि सक्षम व्हा.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-container">
+        <!-- Left Main Column -->
+        <main>
+            <!-- Citizen Services -->
+            <section style="margin-bottom: 30px;">
+                <div class="section-header">
+                    <div class="section-title"><i class="fa-solid fa-hand-holding-hand"></i> Citizen Services (नागरिक सेवा)</div>
+                </div>
+                <div class="grid-3">
+                    <div class="service-card">
+                        <i class="fa-solid fa-gavel service-icon"></i>
+                        <h3>मोफत मार्गदर्शन</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">कायदेशीर समस्यांवर सल्ला मिळवा.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-file-contract service-icon"></i>
+                        <h3>RTI (माहिती अधिकार)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">अर्ज नमुने व मार्गदर्शन.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-shield-halved service-icon"></i>
+                        <h3>पोलिस तक्रार मदत</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">तक्रार अर्ज लेखन मार्गदर्शन.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-users-between-lines service-icon"></i>
+                        <h3>ग्राहक हक्क</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">ग्राहक मंचातील तक्रार निवारण.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-person-dress service-icon"></i>
+                        <h3>महिला हक्क</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">विशेष संरक्षण कायदे व मदत.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-wheelchair service-icon"></i>
+                        <h3>ज्येष्ठ नागरिक हक्क</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top:5px;">कल्याणकारी कायदे आणि संरक्षण.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest News Section -->
+            <section>
+                <div class="section-header">
+                    <div class="section-title"><i class="fa-solid fa-newspaper"></i> Latest Legal News (ताजी बातमी)</div>
+                    <a href="#" class="view-all">सर्व बातम्या पहा <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Supreme Court</span>
+                            <h4 class="card-title">सर्वोच्च न्यायालयाचा नागरिकांच्या मूलभूत हक्कांवर मोठा निर्णय</h4>
+                            <p class="card-text">कायदेशीर प्रक्रियेत पारदर्शकता आणि जलद न्यायासाठी न्यायालयाचे नवीन मार्गदर्शक तत्त्वे...</p>
+                            <a href="#" class="btn btn-gold">अधिक वाचा</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Government GR</span>
+                            <h4 class="card-title">कामगार व वाहन चालकांसाठी नवीन कल्याणकारी योजना घोषित</h4>
+                            <p class="card-text">राज्य सरकारने जारी केला नवीन शासन निर्णय (GR); जाणून घ्या पात्रता आणि अर्ज प्रक्रिया...</p>
+                            <a href="#" class="btn btn-gold">अधिक वाचा</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Registration Links / Forms Section -->
+            <section style="margin-top: 30px;">
+                <div class="section-header">
+                    <div class="section-title"><i class="fa-solid fa-pen-to-square"></i> महत्त्वाचे अर्ज व नोंदणी फॉर्म (Online Forms)</div>
+                </div>
+                <div class="grid-2">
+                    <div class="card" style="padding: 15px; border-left: 4px solid var(--secondary-color);">
+                        <h4><i class="fa-solid fa-file-pen"></i> कायदेशीर मार्गदर्शन फॉर्म</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 8px 0;">तुम्हाला कायदेशीर सल्ल्याची गरज असल्यास हा फॉर्म भरा.</p>
+                        <a href="https://forms.gle/AAJ5bxGtok4zYQZKA" target="_blank" class="btn">फॉर्म भरा (Google Form)</a>
+                    </div>
+                    <div class="card" style="padding: 15px; border-left: 4px solid var(--secondary-color);">
+                        <h4><i class="fa-solid fa-user-plus"></i> Knowledge Contributors नोंदणी</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 8px 0;">कायदेतज्ज्ञ आणि लेखकांनी माहिती देण्यासाठी नोंदणी करा.</p>
+                        <a href="https://forms.gle/65gBhqsrnaw757c57" target="_blank" class="btn">नोंदणी करा</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Counter / Statistics Section -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number">500+</div>
+                        <div>Volunteers</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">1200+</div>
+                        <div>News Published</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">350+</div>
+                        <div>Legal Articles</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">10K+</div>
+                        <div>Visitors</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside>
+            <!-- Social Media Handles Widget -->
+            <div class="sidebar-widget">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <div class="section-title" style="font-size: 1.1rem;"><i class="fa-solid fa-share-nodes"></i> आमच्याशी जोडा</div>
+                </div>
+                <div class="social-links-widget">
+                    <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" target="_blank" class="social-btn bg-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://www.youtube.com/@LegalMitraNews" target="_blank" class="social-btn bg-youtube"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="https://www.facebook.com/share/18cNXq6W9X/" target="_blank" class="social-btn bg-facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                    <a href="https://www.instagram.com/legal_mitra_network" target="_blank" class="social-btn bg-instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+
+            <!-- YouTube Videos Embedded Widget -->
+            <div class="sidebar-widget">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <div class="section-title" style="font-size: 1.1rem;"><i class="fa-brands fa-youtube"></i> Latest Video</div>
+                </div>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius);">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/videoseries?list=UU" title="Legal Mitra YouTube" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Legal Resources Quick Links -->
+            <div class="sidebar-widget">
+                <div class="section-header" style="margin-bottom: 15px;">
+                    <div class="section-title" style="font-size: 1.1rem;"><i class="fa-solid fa-book-bookmark"></i> Legal Resources</div>
+                </div>
+                <ul style="list-style: none;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);"><a href="#"><i class="fa-solid fa-file-pdf" style="color:red;"></i> अर्ज नमुने (PDF)</a></li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);"><a href="#"><i class="fa-solid fa-gavel" style="color:var(--secondary-color);"></i> महत्त्वाचे कायदे (Bare Acts)</a></li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);"><a href="#"><i class="fa-solid fa-scroll"></i> शासन निर्णय (Government GR)</a></li>
+                </ul>
+            </div>
+
+            <!-- Notice / Disclaimer Card -->
+            <div class="sidebar-widget" style="background-color: #fef3c7; border-color: #f59e0b; color: #92400e;">
+                <h4 style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> सूचना व अस्वीकरण</h4>
+                <p style="font-size: 0.8rem; line-height: 1.4;">ही वेबसाईट फक्त कायदेशीर माहिती व जागरूकतेसाठी आहे. हा कोणताही प्रत्यक्ष न्यायालयीन किंवा वकिली सल्ला नाही.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Legal Mitra Network</h3>
+                <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 15px;">आम्ही कायदेशीर सल्ला, सामाजिक न्याय आणि नागरिक जागरूकतेसाठी कटिबद्ध आहोत.</p>
+                <p style="font-size: 0.85rem;"><i class="fa-solid fa-globe"></i> www.legalmitranetwork.in</p>
+            </div>
+            <div class="footer-col">
+                <h3>महत्त्वाच्या लिंक्स</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Legal Mitra News</a></li>
+                    <li><a href="#">Volunteer Registration</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>कायदेशीर बाबी</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>संपर्क करा</h3>
+                <p style="font-size: 0.88rem; color: #cbd5e1;"><i class="fa-solid fa-phone"></i> +91 9321430535</p>
+                <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 5px;"><i class="fa-solid fa-envelope"></i> legalmitranetwork@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Legal Mitra Network. सर्व हक्क सुरक्षित. | Developed for Legal Awareness
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Interactions -->
+    <script>
+        // Dark / Light Mode Toggle Functionality
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggleBtn.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Banner Auto Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000); // Change image every 4 seconds
+    </script>
+</body>
+</html>
