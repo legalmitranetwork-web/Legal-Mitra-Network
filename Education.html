@@ -1,0 +1,436 @@
+html_content = """<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education & Resources - Legal Mitra Network</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #c5a059;
+            --accent-color: #1e3a8a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        .dark-mode {
+            --primary-color: #0b1329;
+            --secondary-color: #d4af37;
+            --accent-color: #2563eb;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mukta', 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .top-info span {
+            margin-right: 15px;
+        }
+
+        .top-info i {
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .top-social a {
+            color: #ffffff;
+            margin-left: 12px;
+            font-size: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0 5%;
+            overflow-x: auto;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 18px;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(13, 35, 58, 0.85), rgba(13, 35, 58, 0.85)), url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .page-banner h2 {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Main Container */
+        .container {
+            padding: 30px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dark-mode .section-title {
+            color: var(--secondary-color);
+        }
+
+        /* Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .resource-card i {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .resource-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .dark-mode .resource-card h3 {
+            color: var(--secondary-color);
+        }
+
+        .resource-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-download:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Accordion / FAQ Style */
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .dark-mode .faq-question {
+            color: var(--secondary-color);
+        }
+
+        .faq-answer {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 30px 5% 15px;
+            border-top: 4px solid var(--secondary-color);
+            margin-top: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fa-solid fa-phone"></i> +91 9321430535</span>
+            <span><i class="fa-solid fa-envelope"></i> legalmitranetwork@gmail.com</span>
+        </div>
+        <div class="top-social">
+            <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@LegalMitraNews" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/18cNXq6W9X/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/legal_mitra_network" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="logo-container">
+                <i class="fa-solid fa-scale-balanced logo-icon"></i>
+                <div class="logo-text">
+                    <h1>LEGAL MITRA NETWORK</h1>
+                    <p>कायद्याची माहिती, सर्वांसाठी.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                <li><a href="education.html" class="active"><i class="fa-solid fa-graduation-cap"></i> Education & Resources</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-address-book"></i> Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <h2>कायदेशीर शिक्षण आणि संसाधने (Education & Resources)</h2>
+        <p>📚 सर्वसामान्यांसाठी सोप्या भाषेतील कायदेशीर मार्गदर्शक पुस्तके व फॉर्म्स</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Legal Guides & PDFs Section -->
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-book-open-reader"></i> कायदेशीर मार्गदर्शक पुस्तिका (PDF Resources)</div>
+        </div>
+
+        <div class="grid-3">
+            <div class="resource-card">
+                <div>
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <h3>माहिती अधिकार (RTI) मार्गदर्शिका</h3>
+                    <p>RTI अर्ज कसा करावा, अपील दाखल करण्याची पद्धत आणि जनमाहिती अधिकाऱ्यांची कर्तव्ये याबाबत सविस्तर माहिती.</p>
+                </div>
+                <a href="#" class="btn-download"><i class="fa-solid fa-download"></i> PDF डाऊनलोड करा</a>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>नागरिकांचे मूलभूत हक्क व कर्तव्ये</h3>
+                    <p>भारतीय संविधानाने दिलेल्या ६ मूलभूत हक्कांची माहिती आणि दैनंदिन जीवनातील कायदेशीर सुरक्षा.</p>
+                </div>
+                <a href="#" class="btn-download"><i class="fa-solid fa-download"></i> PDF डाऊनलोड करा</a>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <i class="fa-solid fa-truck-monster"></i>
+                    <h3>वाहन चालक कायदा व नियम पुस्तिका</h3>
+                    <p>ट्रॅफिक नियम, वाहतूक पोलिसांचे अधिकार, चलनाबाबत नागरिकांचे हक्क आणि अपघात सुरक्षा नियम.</p>
+                </div>
+                <a href="#" class="btn-download"><i class="fa-solid fa-download"></i> PDF डाऊनलोड करा</a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-circle-question"></i> महत्त्वाचे कायदेशीर प्रश्न आणि उत्तरे (Legal Education FAQ)</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question"><i class="fa-solid fa-gavel"></i> १. एफआयआर (FIR) आणि एनसी (NC) मधील फरक काय आहे?</div>
+            <div class="faq-answer">
+                FIR (First Information Report) गंभीर स्वरूपाच्या (Cognizable) गुन्ह्यांसाठी नोंदवला जातो ज्यामध्ये पोलिस वारंवार तपास व अटक करू शकतात. NC (Non-Cognizable Report) हा अ-दखलपात्र गुन्ह्यांसाठी असतो, ज्यात कोर्टाच्या परवानगीशिवाय पोलिस अटक करू शकत नाहीत.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question"><i class="fa-solid fa-file-signature"></i> २. मोफत कायदेशीर मदत (Free Legal Aid) कोणाला मिळू शकते?</div>
+            <div class="faq-answer">
+                नालसा (NALSA) कायद्यानुसार महिला, बालके, अनुसूचित जाती/जमातीचे नागरिक, दिव्यांग व्यक्ती आणि आर्थिकदृष्ट्या दुर्बल घटकांतील नागरिकांना शासकीय खर्चाने वकील व कायदेशीर मदत मिळण्याचा अधिकार आहे.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question"><i class="fa-solid fa-user-shield"></i> ३. पोलिस अटकेच्या वेळी नागरिकांना कोणते हक्क असतात?</div>
+            <div class="faq-answer">
+                अटकेचे कारण जाणून घेणे, २४ तासांच्या आत न्यायाधीशांसमोर हजर केले जाणे, वकिलांशी सल्लामसलत करणे आणि महिलांना केवळ महिला पोलिसांच्या उपस्थितीतच अटक केले जाणे हे मूलभूत अधिकार आहेत.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029VbCe505LY6d941psMB1k" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Legal Mitra Network. सर्व हक्क सुरक्षित. | कायद्याची माहिती, सर्वांसाठी.</p>
+    </footer>
+
+</body>
+</html>
+"""
+
+with open("education.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("education.html generated successfully.")
